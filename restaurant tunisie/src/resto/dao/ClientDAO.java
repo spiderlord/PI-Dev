@@ -8,6 +8,7 @@ package resto.dao;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import resto.entities.Client;
@@ -39,7 +40,27 @@ public class ClientDAO {
         }
 
     }
+     
+public void updateClient(Client c){
+        String requete = "update client set nom=?,prenom=?,date_naissance=?,tel=?,adresse=?,sexe=? where id_client_pk=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, c.getNom());
+            ps.setString(2, c.getPrenom());
+            ps.setDate(3, (Date) c.getDate_naissance());
+            ps.setInt(4, c.getTel());
+            ps.setString(5, c.getAdresse());
+            ps.setString(6, c.getSexe());
+           
+           ps.setInt(7, c.getId_client_pk());
+            ps.executeUpdate();
+            System.out.println("Mise à jour effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
 
+}
 
     public void deleteClient(int id){
         String requete = "delete from client where id_client_pk=?";
@@ -54,4 +75,27 @@ public class ClientDAO {
         }
     }
     
+    
+     public Client RechercherClient(int id){
+    Client client = new Client();
+     String requete = "select * from client where where id_client_pk=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+                client.setId_client_pk(resultat.getInt(1));
+            
+                client.setAdresse(resultat.getString(2));
+            }
+            return client;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot "+ex.getMessage());
+            return null;
+        }
+    
+}
 }
