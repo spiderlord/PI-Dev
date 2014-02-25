@@ -33,10 +33,8 @@ public class authentification {
         }
         if (!Objects.equals(this.password, other.password)) {
             return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
+        }      
+        
         return true;
     }
 
