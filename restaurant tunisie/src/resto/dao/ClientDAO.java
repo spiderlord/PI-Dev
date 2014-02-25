@@ -10,6 +10,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import resto.entities.Client;
 import resto.util.MyConnection;
@@ -78,7 +81,7 @@ public void updateClient(Client c){
     
      public Client RechercherClient(int id){
     Client client = new Client();
-     String requete = "select * from client where where id_client_pk=?";
+     String requete = "select * from client where id_client_pk=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
@@ -87,15 +90,39 @@ public void updateClient(Client c){
             {
                 client.setId_client_pk(resultat.getInt(1));
             
-                client.setAdresse(resultat.getString(2));
+               client.setAdresse(resultat.getString(2));
             }
             return client;
 
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche du depot "+ex.getMessage());
+            System.out.println("erreur lors de la recherche du client "+ex.getMessage());
             return null;
         }
     
 }
-}
+       public List<Client> DisplayAllDepots (){
+          List<Client> listedepots = new ArrayList<Client>();
+
+        String requete = "select * from client";
+        try {
+           Statement statement = MyConnection.getInstance()   
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+
+            while(resultat.next()){
+                Client client =new Client();
+                client.setId_client_pk(resultat.getInt(1));
+                client.setAdresse(resultat.getString(2));
+
+                listedepots.add(client);
+            }
+            return listedepots;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des depots "+ex.getMessage());
+            return null;
+        }
+    }
+} 
+     
