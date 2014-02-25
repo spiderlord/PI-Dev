@@ -87,7 +87,6 @@ public class Restaurant  {
     }
     public Restaurant(String nom,String adresse, String theme, String specialite, int tel, int budget, String alcool,int id_menu_fk)
     {
-       this.id_resto_pk=id_resto_pk;
     this.nom=nom;
     this.adresse=adresse;
     this.theme=theme;
@@ -96,5 +95,10 @@ public class Restaurant  {
     this.budget=budget;
     this.alcool=alcool;
     this.id_menu_fk=id_menu_fk;
+    }
+    @Override
+    public String toString(){
+        return this.nom+" "+this.adresse+" "+this.theme+" "+this.specialite+" "+this.tel+" "+this.budget+" "+this.alcool+" "+this.id_menu_fk;
+        
     }
 }
