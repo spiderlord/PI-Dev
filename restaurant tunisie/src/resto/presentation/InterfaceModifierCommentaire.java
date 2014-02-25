@@ -40,6 +40,7 @@ public class InterfaceModifierCommentaire extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +56,13 @@ public class InterfaceModifierCommentaire extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        menu.setText("Menu");
+        menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuActionPerformed(evt);
             }
         });
 
@@ -75,9 +83,12 @@ public class InterfaceModifierCommentaire extends javax.swing.JFrame {
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel2)))
                     .addGroup(ModifierLayout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(jButton1)))
-                .addContainerGap(290, Short.MAX_VALUE))
+                        .addGap(213, 213, 213)
+                        .addComponent(jButton1))
+                    .addGroup(ModifierLayout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(273, Short.MAX_VALUE))
         );
         ModifierLayout.setVerticalGroup(
             ModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,9 +105,11 @@ public class InterfaceModifierCommentaire extends javax.swing.JFrame {
                     .addGroup(ModifierLayout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(jLabel2)))
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(23, 23, 23))
+                .addGap(18, 18, 18)
+                .addComponent(menu)
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,6 +146,14 @@ public class InterfaceModifierCommentaire extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        MenuGestionCommentaire menu=new MenuGestionCommentaire();
+         this.setVisible(false);
+          menu.setVisible(true);
+    }//GEN-LAST:event_menuActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -152,6 +173,7 @@ public class InterfaceModifierCommentaire extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton menu;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -38,6 +38,7 @@ public class InterfaceSupprimerCommentaire extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Spinner1 = new javax.swing.JSpinner();
         Supprimer = new javax.swing.JButton();
+        menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,6 +48,13 @@ public class InterfaceSupprimerCommentaire extends javax.swing.JFrame {
         Supprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SupprimerActionPerformed(evt);
+            }
+        });
+
+        menu.setText("Menu");
+        menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuActionPerformed(evt);
             }
         });
 
@@ -62,6 +70,10 @@ public class InterfaceSupprimerCommentaire extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Supprimer)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(menu)
+                .addGap(160, 160, 160))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,7 +83,8 @@ public class InterfaceSupprimerCommentaire extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Spinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Supprimer))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(menu))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,6 +118,14 @@ public class InterfaceSupprimerCommentaire extends javax.swing.JFrame {
 
     }//GEN-LAST:event_SupprimerActionPerformed
 
+    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        MenuGestionCommentaire menu=new MenuGestionCommentaire();
+         this.setVisible(false);
+          menu.setVisible(true);
+    }//GEN-LAST:event_menuActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -121,6 +142,7 @@ public class InterfaceSupprimerCommentaire extends javax.swing.JFrame {
     private javax.swing.JButton Supprimer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton menu;
     // End of variables declaration//GEN-END:variables
 
 }
