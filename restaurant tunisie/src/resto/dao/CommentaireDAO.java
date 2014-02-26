@@ -113,7 +113,7 @@ public class CommentaireDAO {
             return listeCommentaire;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des depots "+ex.getMessage());
+            System.out.println("erreur lors du chargement des commentaires "+ex.getMessage());
             return null;
         }
     }
