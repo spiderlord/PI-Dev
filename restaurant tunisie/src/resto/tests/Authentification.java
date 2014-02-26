@@ -150,9 +150,9 @@ public class Authentification extends javax.swing.JFrame {
     aut.setPassword(pwd);
     authentificationDAO autdao=new authentificationDAO();
     autdb=autdao.verifier(log);
-    if(equals(autdb))
+    if(aut.equals(autdb))
     {
-        erreur.setText("correct");
+        new menu().setVisible(true);
     }
     else{
         erreur.setText("Login or Password is Incorrect");

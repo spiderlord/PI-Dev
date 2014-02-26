@@ -29,11 +29,14 @@ public class authentification {
         }
         final authentification other = (authentification) obj;
         if (!Objects.equals(this.login, other.login)) {
+            System.out.println(other.login);
             return false;
         }
         if (!Objects.equals(this.password, other.password)) {
+            System.out.println(other.password);
             return false;
         }      
+        System.out.println("ok");
         
         return true;
     }
