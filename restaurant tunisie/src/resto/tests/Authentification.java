@@ -11,6 +11,10 @@
 
 package resto.tests;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import resto.dao.authentificationDAO;
 import resto.entities.authentification;
 
@@ -19,6 +23,10 @@ import resto.entities.authentification;
  * @author dali
  */
 public class Authentification extends javax.swing.JFrame {
+
+     public void setretrieveUserListener(ActionListener l) {
+  retrieveUser.addActionListener(l);
+ }
 
     /** Creates new form Authentification */
     public Authentification() {
@@ -39,14 +47,18 @@ public class Authentification extends javax.swing.JFrame {
         connexion = new javax.swing.JButton();
         logintext = new javax.swing.JLabel();
         passwordtext = new javax.swing.JLabel();
-        fb = new javax.swing.JButton();
         erreur = new javax.swing.JLabel();
+        retrieveUser = new javax.swing.JButton();
         Password = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setToolTipText("");
 
+        connexion.setBackground(new java.awt.Color(204, 255, 204));
+        connexion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resto/images/key.png"))); // NOI18N
         connexion.setText("Connexion");
         connexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,34 +66,32 @@ public class Authentification extends javax.swing.JFrame {
             }
         });
 
+        logintext.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         logintext.setText("Login:");
 
+        passwordtext.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         passwordtext.setText("Password:");
 
-        fb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resto/images/fac.png"))); // NOI18N
-        fb.addActionListener(new java.awt.event.ActionListener() {
+        erreur.setForeground(new java.awt.Color(255, 0, 51));
+
+        retrieveUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resto/images/fac.png"))); // NOI18N
+        retrieveUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fbActionPerformed(evt);
+                retrieveUserActionPerformed(evt);
             }
         });
 
-        erreur.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resto/images/Logo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(fb, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                .addComponent(connexion, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(207, 207, 207)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(erreur)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(253, 253, 253)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(logintext)
@@ -90,16 +100,29 @@ public class Authentification extends javax.swing.JFrame {
                                 .addComponent(passwordtext)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(Login))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Password)
+                            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(retrieveUser, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(connexion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(erreur))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(208, Short.MAX_VALUE)
-                .addComponent(erreur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logintext))
@@ -107,37 +130,32 @@ public class Authentification extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordtext)
                     .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(connexion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(fb, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(retrieveUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(connexion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(erreur)
+                .addGap(90, 90, 90))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbActionPerformed
+    private void retrieveUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retrieveUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fbActionPerformed
+    }//GEN-LAST:event_retrieveUserActionPerformed
 
     private void connexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexionActionPerformed
     String log;
@@ -152,7 +170,9 @@ public class Authentification extends javax.swing.JFrame {
     autdb=autdao.verifier(log);
     if(aut.equals(autdb))
     {
+        this.setVisible(false);
         new menu().setVisible(true);
+        
     }
     else{
         erreur.setText("Login or Password is Incorrect");
@@ -163,23 +183,27 @@ public class Authentification extends javax.swing.JFrame {
     /**
     * @param args the command line arguments
     */
+  
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Authentification().setVisible(true);
+                
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Login;
     private javax.swing.JPasswordField Password;
     private javax.swing.JButton connexion;
     private javax.swing.JLabel erreur;
-    private javax.swing.JButton fb;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logintext;
     private javax.swing.JLabel passwordtext;
+    private javax.swing.JButton retrieveUser;
     // End of variables declaration//GEN-END:variables
 
 }
