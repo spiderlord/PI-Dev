@@ -18,10 +18,11 @@ import resto.entities.Client;
  */
 public class MyModelList extends AbstractTableModel{
 List<Client> maliste = new ArrayList<Client>();
-     String[] header ={"id_client_pk","Nom","Prenom","date_naissance","tel","adresse","sexe","Supprimer"};       
+     String[] header ={"id_client_pk","Nom","Prenom","date_naissance","tel","adresse","sexe","Modifier","Supprimer"};       
      Boolean data[][]= new Boolean[20][20];
     
     
+     
    
     public MyModelList(){
     maliste = new ClientDAO().DisplayAllClient();
@@ -29,7 +30,12 @@ List<Client> maliste = new ArrayList<Client>();
         data[i][7]=Boolean.FALSE;
 }
 }
-    
+    public MyModelList(Object obj){
+    maliste=(List<Client>) obj;
+    for(int i=0;i<getRowCount();i++){
+        data[i][7]=Boolean.FALSE;
+}
+}
 @Override
     public int getRowCount() {
     return maliste.size();
@@ -38,9 +44,9 @@ List<Client> maliste = new ArrayList<Client>();
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         
         Boolean b = (Boolean)aValue;
-        if(columnIndex==7){
+        if(columnIndex==8){
             
-            data[rowIndex][7]=b;
+            data[rowIndex][8]=b;
         }}
 
     @Override
@@ -80,7 +86,7 @@ List<Client> maliste = new ArrayList<Client>();
     
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        if(columnIndex==7){
+        if(columnIndex==8){
             return Boolean.class;
         }
         return super.getColumnClass(columnIndex);
