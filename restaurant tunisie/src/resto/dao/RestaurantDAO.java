@@ -99,9 +99,9 @@ public class RestaurantDAO {
         try {
            Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
-            Restaurant R =new Restaurant();
+            
             while(resultat.next()){
-                
+                Restaurant R =new Restaurant();
                 R.setId_resto_pk(resultat.getInt(1));
                 R.setNom(resultat.getString(2));
                 R.setAdresse(resultat.getString(3));
