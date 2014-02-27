@@ -16,10 +16,28 @@ public class Client {
     private int id_client_pk;
     private String nom;
     private String prenom;
-    private Date date_naissance;
+    private String date_naissance;
+  private String mail;
+  
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+  
+  
+    public String getMail() {
+        return mail;
+    }
+  
+
+    public void setDate_naissance(String date_naissance) {
+        this.date_naissance = date_naissance;
+    }
+
+    public String getDate_naissance() {
+        return date_naissance;
+    }
     private int tel;
-
-
     private String adresse;
     private String sexe;
 
@@ -31,14 +49,7 @@ public class Client {
     }
 
 
-    public Date getDate_naissance() {
-        return date_naissance;
-    }
-
-    public void setDate_naissance(Date date_naissance) {
-        this.date_naissance = date_naissance;
-    }
-
+ 
 
    
 
@@ -126,6 +137,10 @@ public class Client {
      */
     public void setSexe(String sexe) {
         this.sexe = sexe;
+    }
+
+    public int id_client_pk() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
