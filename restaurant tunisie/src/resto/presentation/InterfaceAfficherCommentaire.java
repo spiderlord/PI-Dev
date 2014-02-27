@@ -10,12 +10,15 @@
  */
 
 package resto.presentation;
-
+import resto.dao.CommentaireDAO;
+import resto.entities.Commentaire;
 /**
  *
  * @author user
  */
 public class InterfaceAfficherCommentaire extends javax.swing.JFrame {
+       private CommentaireDAO commentaireDAO = new CommentaireDAO();
+        Commentaire c = new Commentaire();
 
     /** Creates new form AfficherCommentaire */
     public InterfaceAfficherCommentaire() {
@@ -33,19 +36,27 @@ public class InterfaceAfficherCommentaire extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tab = new javax.swing.JTable();
         menu = new javax.swing.JButton();
+        supprimer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
 
-        jTable1.setModel(new AffichertoutCommentaire());
-        jScrollPane1.setViewportView(jTable1);
+        tab.setModel(new AffichertoutCommentaire());
+        jScrollPane1.setViewportView(tab);
 
         menu.setText("Menu");
         menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuActionPerformed(evt);
+            }
+        });
+
+        supprimer.setText("Supprimer");
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerActionPerformed(evt);
             }
         });
 
@@ -55,21 +66,26 @@ public class InterfaceAfficherCommentaire extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addComponent(jScrollPane1)
-                .addGap(174, 174, 174))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127)
+                        .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(174, 174, 174))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(menu)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(menu)
+                    .addComponent(supprimer))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -88,7 +104,7 @@ public class InterfaceAfficherCommentaire extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(603, 429));
+        setSize(new java.awt.Dimension(624, 429));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -99,6 +115,14 @@ public class InterfaceAfficherCommentaire extends javax.swing.JFrame {
          this.setVisible(false);
           menu.setVisible(true);
     }//GEN-LAST:event_menuActionPerformed
+
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+     
+      commentaireDAO.deleteCommentaire(Integer.parseInt(tab.getValueAt(tab.getSelectedRow(), 0).toString()));
+       this.setVisible(false);
+       new InterfaceAfficherCommentaire().setVisible(true);
+        
+    }//GEN-LAST:event_supprimerActionPerformed
 
     /**
     * @param args the command line arguments
@@ -114,8 +138,9 @@ public class InterfaceAfficherCommentaire extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton menu;
+    private javax.swing.JButton supprimer;
+    private javax.swing.JTable tab;
     // End of variables declaration//GEN-END:variables
 
 }

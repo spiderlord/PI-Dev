@@ -16,8 +16,8 @@ public class testdeleteCommentaire {
      public static void main(String[] args){
         Commentaire commentaire = new Commentaire();
         CommentaireDAO commentaireDAO = new CommentaireDAO();
-        commentaire = commentaireDAO.findCommentaireById(1);
-        commentaireDAO.deleteCommentaire(commentaire);
+       // commentaire = commentaireDAO.findCommentaireById(1);
+        commentaireDAO.deleteCommentaire(1);
        
 
         

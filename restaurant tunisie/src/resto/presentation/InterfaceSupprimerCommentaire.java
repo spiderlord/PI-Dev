@@ -113,7 +113,7 @@ public class InterfaceSupprimerCommentaire extends javax.swing.JFrame {
         Commentaire c =new Commentaire();
         int id =Integer.parseInt(Spinner1.getValue().toString());
          c.setIdcommentaire(id);
-         CDAO.deleteCommentaire(c);
+         CDAO.deleteCommentaire(id );
 
 
     }//GEN-LAST:event_SupprimerActionPerformed

@@ -5,6 +5,7 @@
 
 package resto.tests;
 
+import java.util.List;
 import resto.dao.CommentaireDAO;
 import resto.entities.Commentaire;
 
@@ -14,10 +15,13 @@ import resto.entities.Commentaire;
  */
 public class testAddCommentaire {
     public static void main(String[] args){
+         List <Commentaire> commentaires;
         Commentaire comment = new Commentaire();
         CommentaireDAO commentaireDAO = new CommentaireDAO();
-        comment.setText("premier insertion avec test");
+        comment.setText("6eme insertion avec test");
         commentaireDAO.insertCommentaire(comment);
+        
+        
     }
         
 

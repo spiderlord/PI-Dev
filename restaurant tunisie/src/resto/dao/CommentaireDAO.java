@@ -22,12 +22,21 @@ import java.util.List;
  * @author user
  */
 public class CommentaireDAO {
+    
+     public java.sql.Date getCurrentDate() {
+    java.util.Date today = new java.util.Date();
+    return new java.sql.Date(today.getTime());
+}
+     
 
     public void insertCommentaire(Commentaire c){
-        String requete = "insert into commentaire (texte) values (?)";
+        String requete = "insert into commentaire (texte, Date) values (?,?)";
         try {
            PreparedStatement ps = (PreparedStatement) MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, c.getText());
+            java.sql.Date date = getCurrentDate();
+                ps.setDate(2, date);
+            
             ps.executeUpdate();
             System.out.println("Ajout s'est effectuée avec succès");
         } catch (SQLException ex) {
@@ -39,12 +48,12 @@ public class CommentaireDAO {
 
     }
 
-     public void deleteCommentaire(Commentaire c){
+     public void deleteCommentaire(int c){
         String requete = "delete from commentaire where id_coms_pk=?";
         try {
             PreparedStatement ps = (PreparedStatement) MyConnection.getInstance().prepareStatement(requete);
            
-            ps.setInt(1, c.getIdcommentaire());
+            ps.setInt(1, c);
             ps.executeUpdate();
             System.out.println(" supprimée");
         } catch (SQLException ex) {
@@ -95,19 +104,21 @@ public class CommentaireDAO {
        public List<Commentaire> DisplayAllCommentaire(){
 
 
-        List<Commentaire> listeCommentaire = new ArrayList<Commentaire>();
+        List<Commentaire> listeCommentaire = new ArrayList<>();
 
         String requete = "select * from commentaire";
         try {
-           Statement statement = (Statement) MyConnection.getInstance()
-                   .createStatement();
+           Statement statement = (Statement) MyConnection.getInstance().createStatement();
             ResultSet resultat = (ResultSet) statement.executeQuery(requete);
 
             while(resultat.next()){
                 Commentaire commentaire =new Commentaire();
                 commentaire.setIdcommentaire(resultat.getInt(1));
                 commentaire.setText(resultat.getString(2));
-
+                commentaire.setDates(resultat.getDate(3));
+               
+              //  System.out.println(resultat.getDate(3));
+                
                 listeCommentaire.add(commentaire);
             }
             return listeCommentaire;

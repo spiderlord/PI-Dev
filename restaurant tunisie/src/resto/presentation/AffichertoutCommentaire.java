@@ -19,18 +19,39 @@ import javax.swing.table.AbstractTableModel;
 public class AffichertoutCommentaire extends AbstractTableModel{
 
     List <Commentaire> commentaires;
-    String [] columTab = {"Identif", "Commentaire"};
+    String [] columTab = {"Identifiant", "Commentaire","ID Utilisateur ","La Date du commentaire","Supprimer "};
+     Boolean data[][]= new Boolean[20][20];
+   
+    
+    
     public AffichertoutCommentaire(){
         CommentaireDAO commentaireDAO = new CommentaireDAO();
         commentaires = commentaireDAO.DisplayAllCommentaire();
-
+        
+          for(int i=0;i<getRowCount();i++){
+        data[i][5]=Boolean.FALSE;
+}
+        
+        
+  
     }
 
+    @Override
     public int getRowCount() {
          return  commentaires.size();
     }
 
-    public int getColumnCount() {
+  
+    @Override
+     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        
+        Boolean b = (Boolean)aValue;
+        if(columnIndex==4){
+            
+            data[rowIndex][4]=b;
+        }}
+     
+       public int getColumnCount() {
          return columTab.length;
     }
 
@@ -39,6 +60,8 @@ public class AffichertoutCommentaire extends AbstractTableModel{
        {
           case 0 : return commentaires.get(rowIndex).getIdcommentaire();
           case 1 : return commentaires.get(rowIndex).getText();
+          case 3 : return commentaires.get(rowIndex).getDates();
+          case 4:return data[rowIndex][4]; 
           default: return null;
        }
     }
@@ -47,5 +70,22 @@ public class AffichertoutCommentaire extends AbstractTableModel{
      public String getColumnName(int column) {
        return  columTab[column];
     }
+     
+     public boolean isCellEditable(int rowIndex, int columnIndex) {
+       
+        if(columnIndex==4){
+            return true;
+        }
+        return false;
+    }
+        
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        if(columnIndex==4){
+            return Boolean.class;
+        }
+        return super.getColumnClass(columnIndex);
+    }
+     
 
 }
