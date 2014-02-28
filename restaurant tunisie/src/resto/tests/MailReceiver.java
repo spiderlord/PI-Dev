@@ -1,34 +1,38 @@
 package resto.tests;
 
-import resto.tests.Mail;
-import java.io.IOException;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.Scanner;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.NoSuchProviderException;
-import javax.mail.Session;
-import com.sun.mail.pop3.POP3Store;
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Scanner;
 import javax.mail.Multipart;
+import javax.mail.NoSuchProviderException;
 import javax.mail.Part;
+import javax.mail.Session;
 import javax.mail.Store;
-import sun.misc.IOUtils;
+
+
 
 public class MailReceiver {
 	
-    public static List<Mail> getMails(String userMail, String password, int max) {
+    /**
+     *
+     * @param userMail
+     * @param password
+     * @param max
+     * @return
+     */
+   
+     
+    
+    public List<Mail> getMails(String userMail, String password, int max) {
             
             
-                List<Mail> receivedMails = new ArrayList<Mail>();
+                List<Mail> receivedMails = new ArrayList<>();
                 Mail mail = new Mail();
                 
 		Properties props = System.getProperties();
@@ -62,20 +66,17 @@ public class MailReceiver {
                                         catch (Exception ex)
                                         {
                                              System.out.println("Exception arise at get Content");
-                                             ex.printStackTrace();
                                         }
                                         receivedMails.add(mail);
                                         mail = new Mail();
                                   }      
                                 
 		} catch (NoSuchProviderException e) {
-			e.printStackTrace();
 			System.exit(1);
 		} catch (MessagingException e) {
-			e.printStackTrace();
 			System.exit(2);
 		}
-                        
+                        System.out.println("ok");
                 return receivedMails;
 
 	}

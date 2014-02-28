@@ -30,13 +30,12 @@ public class InboxFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         mail = new java.awt.TextField();
         password = new javax.swing.JPasswordField();
-        maxMailsSlider = new javax.swing.JSlider();
         mailLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         maxMailsLabel = new javax.swing.JLabel();
-        maxMails = new javax.swing.JLabel();
         loadMails = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         mailsTable = new javax.swing.JTable();
@@ -51,19 +50,14 @@ public class InboxFrame extends javax.swing.JFrame {
         mailContent = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         mail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mailActionPerformed(evt);
-            }
-        });
-
-        maxMailsSlider.setMaximum(50);
-        maxMailsSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                maxMailsSliderStateChanged(evt);
             }
         });
 
@@ -73,11 +67,7 @@ public class InboxFrame extends javax.swing.JFrame {
 
         maxMailsLabel.setText("MAX MAILS");
 
-        maxMails.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        maxMails.setText("50");
-        maxMails.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        maxMails.setPreferredSize(new java.awt.Dimension(20, 25));
-
+        loadMails.setBackground(new java.awt.Color(255, 255, 255));
         loadMails.setText("LOAD MAILS");
         loadMails.setActionCommand("");
         loadMails.addActionListener(new java.awt.event.ActionListener() {
@@ -86,10 +76,18 @@ public class InboxFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("NEW MAIL");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Menu");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -111,18 +109,18 @@ public class InboxFrame extends javax.swing.JFrame {
                             .addComponent(maxMailsLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(maxMailsSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(maxMails, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(mail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mail, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                             .addComponent(password))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton2)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addComponent(jButton2)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mailLabel))
@@ -131,11 +129,8 @@ public class InboxFrame extends javax.swing.JFrame {
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel))
                 .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(maxMails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(maxMailsLabel)
-                    .addComponent(maxMailsSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(maxMailsLabel)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(loadMails, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,6 +138,8 @@ public class InboxFrame extends javax.swing.JFrame {
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jScrollPane1.setViewportView(mailsTable);
 
@@ -163,6 +160,7 @@ public class InboxFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         emailNumberLabel.setText("EMAIL N°: ");
@@ -248,15 +246,10 @@ public class InboxFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mailActionPerformed
 
-    private void maxMailsSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_maxMailsSliderStateChanged
-        maxMails.setText(Integer.toString(maxMailsSlider.getValue()));
-    }//GEN-LAST:event_maxMailsSliderStateChanged
-
     private void loadMailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadMailsActionPerformed
 
         mails.clear();
-        mails.addAll(MailReceiver.
-            getMails(mail.getText(), password.getText(), Integer.parseInt(maxMails.getText())));
+        mails.addAll(MailReceiver.getMails(mail.getText(), password.getText(), Integer.parseInt(maxMails.getText())));
 
     }//GEN-LAST:event_loadMailsActionPerformed
 
@@ -265,6 +258,12 @@ public class InboxFrame extends javax.swing.JFrame {
         SendMailFrame mailFrame = new SendMailFrame();
         mailFrame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+ this.setVisible(false);
+        new menu().setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,6 +304,7 @@ public class InboxFrame extends javax.swing.JFrame {
     private javax.swing.JLabel emailNumber;
     private javax.swing.JLabel emailNumberLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -317,9 +317,7 @@ public class InboxFrame extends javax.swing.JFrame {
     private javax.swing.JTextField mailSender;
     private javax.swing.JTextField mailSubject;
     private javax.swing.JTable mailsTable;
-    private javax.swing.JLabel maxMails;
     private javax.swing.JLabel maxMailsLabel;
-    private javax.swing.JSlider maxMailsSlider;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel senderLabel;
