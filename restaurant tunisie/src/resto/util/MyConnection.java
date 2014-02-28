@@ -19,6 +19,10 @@ public class MyConnection {
    private static final  String pwd = "";
    private static Connection con;
 
+    public static Object getInsatance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
    private MyConnection(){
 

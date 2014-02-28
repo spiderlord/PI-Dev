@@ -14,8 +14,12 @@ import java.util.Date;
 public class Commentaire {
     
     
-      private  int id_coms_pk;
+   private  int id_coms_pk;
    private String texte;
+   private int id_resto_fk;
+   
+   
+   
    Date date;
    public Date getDates(){
        return date;

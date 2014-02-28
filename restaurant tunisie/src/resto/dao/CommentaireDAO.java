@@ -30,7 +30,7 @@ public class CommentaireDAO {
      
 
     public void insertCommentaire(Commentaire c){
-        String requete = "insert into commentaire (texte, Date) values (?,?)";
+        String requete = "insert into commentaire (texte, Date) values (?,?) ";
         try {
            PreparedStatement ps = (PreparedStatement) MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, c.getText());
@@ -106,7 +106,7 @@ public class CommentaireDAO {
 
         List<Commentaire> listeCommentaire = new ArrayList<>();
 
-        String requete = "select * from commentaire";
+        String requete = "select * from commentaire ";
         try {
            Statement statement = (Statement) MyConnection.getInstance().createStatement();
             ResultSet resultat = (ResultSet) statement.executeQuery(requete);
