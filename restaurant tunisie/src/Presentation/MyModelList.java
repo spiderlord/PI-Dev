@@ -18,7 +18,7 @@ import resto.entities.Client;
  */
 public class MyModelList extends AbstractTableModel{
 List<Client> maliste = new ArrayList<Client>();
-     String[] header ={"id_client_pk","Nom","Prenom","date_naissance","tel","adresse","sexe","Modifier","Supprimer"};       
+     String[] header ={"id_client_pk","Nom","Prenom","date_naissance","tel","adresse","sexe","mail"};       
      Boolean data[][]= new Boolean[20][20];
     
     
@@ -27,13 +27,13 @@ List<Client> maliste = new ArrayList<Client>();
     public MyModelList(){
     maliste = new ClientDAO().DisplayAllClient();
     for(int i=0;i<getRowCount();i++){
-        data[i][7]=Boolean.FALSE;
+        data[i][8]=Boolean.FALSE;
 }
 }
     public MyModelList(Object obj){
     maliste=(List<Client>) obj;
     for(int i=0;i<getRowCount();i++){
-        data[i][7]=Boolean.FALSE;
+        data[i][8]=Boolean.FALSE;
 }
 }
 @Override
@@ -60,12 +60,12 @@ List<Client> maliste = new ArrayList<Client>();
             case 0:return maliste.get(rowIndex).getId_client_pk();
             case 1:return maliste.get(rowIndex).getNom();
             case 2:return maliste.get(rowIndex).getPrenom();
-            case 3:return maliste.get(rowIndex).getDate_naissance();
+            case 3:return (maliste.get(rowIndex).getDate_naissance());
             case 4:return maliste.get(rowIndex).getTel();
             case 5:return maliste.get(rowIndex).getAdresse();
             case 6:return maliste.get(rowIndex).getSexe();
-            
-            case 7:return data[rowIndex][7];   
+              case 7:return maliste.get(rowIndex).getMail();
+            case 8:return data[rowIndex][8];   
            
                 default:return null;
                 
@@ -73,7 +73,7 @@ List<Client> maliste = new ArrayList<Client>();
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
        
-        if(columnIndex==7){
+        if(columnIndex==8){
             return true;
         }
         return false;
