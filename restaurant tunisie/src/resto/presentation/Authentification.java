@@ -175,18 +175,20 @@ public class Authentification extends javax.swing.JFrame {
             .addGroup(AuthentificationLayout.createSequentialGroup()
                 .addGroup(AuthentificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AuthentificationLayout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(erreur))
-                    .addGroup(AuthentificationLayout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AuthentificationLayout.createSequentialGroup()
+                        .addGap(315, 315, 315)
+                        .addComponent(erreur)))
                 .addContainerGap(1020, Short.MAX_VALUE))
         );
         AuthentificationLayout.setVerticalGroup(
             AuthentificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AuthentificationLayout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(erreur)
+                .addGap(8, 8, 8)
                 .addGroup(AuthentificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logintext))
@@ -198,9 +200,7 @@ public class Authentification extends javax.swing.JFrame {
                 .addGroup(AuthentificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(retrieveUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(connexion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(erreur)
-                .addGap(90, 90, 90))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -748,7 +748,6 @@ public class Authentification extends javax.swing.JFrame {
     aut.setPassword(pwd);
     authentificationDAO autdao=new authentificationDAO();
     autdb=autdao.verifier(log);
-    
     if(aut.equals(autdb))
     {
         Gestionrestaurant.setVisible(false);
@@ -1206,9 +1205,10 @@ public class Authentification extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
+           
             public void run() {
                 new Authentification().setVisible(true);
-                
+               
             }
         });
     }
