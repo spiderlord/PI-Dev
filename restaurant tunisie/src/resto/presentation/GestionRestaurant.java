@@ -11,7 +11,7 @@ public class GestionRestaurant extends javax.swing.JFrame {
 
     RestaurantDAO dao = new RestaurantDAO();
     Restaurant res = new Restaurant();
-    int a;
+    int z;
     public GestionRestaurant() {
         initComponents();
         modif1.setVisible(false);
@@ -64,8 +64,8 @@ public class GestionRestaurant extends javax.swing.JFrame {
         tab = new javax.swing.JTable();
         modif = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        SearchBtn = new javax.swing.JButton();
         recherche = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -121,6 +121,7 @@ public class GestionRestaurant extends javax.swing.JFrame {
         jLabel1.setText("Nom");
 
         annuler.setBackground(new java.awt.Color(255, 255, 255));
+        annuler.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/supprimer-icone-6492-16.png"))); // NOI18N
         annuler.setText("   Annuler");
         annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,6 +350,7 @@ public class GestionRestaurant extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liste des restaurants", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 18))); // NOI18N
 
         supprimer.setBackground(new java.awt.Color(255, 255, 255));
+        supprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/supprimer-icone-9337-16.png"))); // NOI18N
         supprimer.setText("   Supprimer");
         supprimer.setActionCommand("Supprimer");
         supprimer.addActionListener(new java.awt.event.ActionListener() {
@@ -402,6 +404,20 @@ public class GestionRestaurant extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel11.setText("Recherche :");
 
+        SearchBtn.setBackground(new java.awt.Color(255, 255, 255));
+        SearchBtn.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        SearchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/trouver-recherche-zoom-icone-4884-32.png"))); // NOI18N
+        SearchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchBtnMouseClicked(evt);
+            }
+        });
+        SearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBtnActionPerformed(evt);
+            }
+        });
+
         recherche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rechercheActionPerformed(evt);
@@ -412,8 +428,6 @@ public class GestionRestaurant extends javax.swing.JFrame {
                 rechercheKeyReleased(evt);
             }
         });
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resto/images/trouver-recherche-zoom-icone-4884-32.png"))); // NOI18N
 
         javax.swing.GroupLayout GestionrestaurantLayout = new javax.swing.GroupLayout(Gestionrestaurant);
         Gestionrestaurant.setLayout(GestionrestaurantLayout);
@@ -426,8 +440,8 @@ public class GestionRestaurant extends javax.swing.JFrame {
                 .addGroup(GestionrestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(GestionrestaurantLayout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SearchBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(recherche, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -442,12 +456,12 @@ public class GestionRestaurant extends javax.swing.JFrame {
                         .addComponent(et, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(GestionrestaurantLayout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addGroup(GestionrestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(GestionrestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(GestionrestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(recherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel13))
-                        .addGap(7, 7, 7)
+                            .addComponent(SearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
@@ -644,10 +658,10 @@ public class GestionRestaurant extends javax.swing.JFrame {
 
         if (dialogButton == JOptionPane.YES_OPTION) { //The ISSUE is here
 
-            RestaurantDAO restDAO = new RestaurantDAO();
+            RestaurantDAO clientDAO = new RestaurantDAO();
             
            int userId = Integer.parseInt(tab.getValueAt(tab.getSelectedRow(), 0).toString());
-           restDAO.deleteRestaurant(userId);
+           clientDAO.deleteRestaurant(userId);
             
             ModelTable model = new ModelTable();
             tab.setModel(model);
@@ -662,30 +676,30 @@ public class GestionRestaurant extends javax.swing.JFrame {
 
     private void modifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifActionPerformed
         if(tab.getSelectedRow()!=-1){
-            Restaurant R=new Restaurant();
+            Restaurant c=new Restaurant();
             RestaurantDAO rdao=new RestaurantDAO();
-            R= rdao.findRestoByID((Integer) tab.getValueAt(tab.getSelectedRow(), 0));
-            a=(Integer) tab.getValueAt(tab.getSelectedRow(), 0);
+            c= rdao.findRestoByID((Integer) tab.getValueAt(tab.getSelectedRow(), 0));
+            z=(Integer) tab.getValueAt(tab.getSelectedRow(), 0);
              
           titre.setText("Modifier restaurateur");
           modif1.setVisible(true);
           ajouter.setVisible(false);
           
-          nom.setText(R.getNom());
-        adresse.setText(R.getAdresse());
-        theme.setText(R.getTheme());
-        specialite.setText(R.getSpecialite());
-        tel.setText(Integer.toString(R.getTel()));
-        budget.setText(Integer.toString(R.getBudget()));
-        alcool.setText(R.getAlcool());
-        menu.setText(Integer.toString(R.getId_menu_fk()));
-        restorateur.setText(Integer.toString(R.getId_restaurateur_fk()));
-        mail.setText(R.getMail());
+          nom.setText(c.getNom());
+        adresse.setText(c.getAdresse());
+        theme.setText(c.getTheme());
+        specialite.setText(c.getSpecialite());
+        tel.setText(Integer.toString(c.getTel()));
+        budget.setText(Integer.toString(c.getBudget()));
+        alcool.setText(c.getAlcool());
+        menu.setText(Integer.toString(c.getId_menu_fk()));
+        restorateur.setText(Integer.toString(c.getId_restaurateur_fk()));
+        mail.setText(c.getMail());
             
             
         
 
-            System.out.println(R);
+            System.out.println(c);
          this.setVisible(true);
          
         
@@ -707,14 +721,33 @@ public class GestionRestaurant extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rechercheActionPerformed
 
+    private void SearchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchBtnMouseClicked
+        String value = recherche.getText().toString();
+    }//GEN-LAST:event_SearchBtnMouseClicked
+
+    private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchBtnActionPerformed
+
     private void rechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rechercheKeyReleased
-        List<Restaurant> li = new RestaurantDAO().RechercherAllResto(recherche.getText());
+        List<Restaurant> li = new RestaurantDAO().RechercherAllClient(recherche.getText());
         ModelTable model1 = new ModelTable(li);
         tab.setModel(model1);
     }//GEN-LAST:event_rechercheKeyReleased
 
     private void tabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabMouseClicked
 
+//        res = dao.findRestoByID(Integer.parseInt(tab.getValueAt(tab.getSelectedRow(), 0).toString()));
+//        nom.setText(res.getNom());
+//        adresse.setText(res.getAdresse());
+//        theme.setText(res.getTheme());
+//        specialite.setText(res.getSpecialite());
+//        tel.setText(Integer.toString(res.getTel()));
+//        budget.setText(Integer.toString(res.getBudget()));
+//        alcool.setText(res.getAlcool());
+//        menu.setText(Integer.toString(res.getId_menu_fk()));
+//        restorateur.setText(Integer.toString(res.getId_restaurateur_fk()));
+//        mail.setText(res.getMail());
     }//GEN-LAST:event_tabMouseClicked
 
     private void restorateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restorateurActionPerformed
@@ -811,7 +844,7 @@ public class GestionRestaurant extends javax.swing.JFrame {
         if(nom.getText().equals("") ==false && f==0 && adresse.getText().equals("") ==false && g==0 && theme.getText().equals("") == false && h==0 && specialite.getText().equals("") == false && i==0 && tel.getText().equals("") ==false && b!=0 && budget.getText().equals("") ==false && c!=0 && alcool.getText().equals("") == false && j==0 && menu.getText().equals("") ==false && d!=0 && restorateur.getText().equals("") == false && e!=0 && controler.matches()==true)
         {
 
-        res.setId_resto_pk(a);
+        res.setId_resto_pk(z);
         res.setNom(nom.getText());
         res.setAdresse(adresse.getText());
         res.setTheme(theme.getText());
@@ -907,6 +940,7 @@ public class GestionRestaurant extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Gestionrestaurant;
+    private javax.swing.JButton SearchBtn;
     private javax.swing.JTextField adresse;
     private javax.swing.JButton ajouter;
     private javax.swing.JTextField alcool;
@@ -927,7 +961,6 @@ public class GestionRestaurant extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

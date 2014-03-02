@@ -65,7 +65,7 @@ public class ModelTable extends AbstractTableModel {
         }
     }
     
-    @Override
+//    @Override
      public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         
         Boolean b = (Boolean)aValue;

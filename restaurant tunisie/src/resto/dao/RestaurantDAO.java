@@ -1,5 +1,6 @@
 package resto.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -7,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import resto.entities.Restaurant;
 import resto.util.MyConnection;
-import java.sql.PreparedStatement;
 
 public class RestaurantDAO {
     
@@ -68,9 +68,6 @@ public class RestaurantDAO {
         }
 
     }
-    
-    
-    // recherche pa Id
      public Restaurant findRestoByID(int  id){
     Restaurant R = new Restaurant();
      String requete = "select * from restaurant where id_resto_pk=?";
@@ -100,7 +97,7 @@ public class RestaurantDAO {
             return null;
         }
     }
-      public List<Restaurant> RechercherAllResto(String ch){
+      public List<Restaurant> RechercherAllClient(String ch){
     
    List<Restaurant> listeRes = new ArrayList<Restaurant>();
      String requete = "(select * from restaurant where id_resto_pk like '%"+ch+"%') union (select * from restaurant where nom like '%"+ch+"%') union (select * from restaurant where adresse like '%"+ch+"%') union (select * from restaurant where theme like '%"+ch+"%') union (select * from restaurant where specialite like '%"+ch+"%') union (select * from restaurant where tel like '%"+ch+"%') union (select * from restaurant where budget like '%"+ch+"%')union(select * from restaurant where alcool like'%"+ch+"%')union(select * from restaurant where id_menu_fk like '%"+ch+"%')union(select * from restaurant where id_restaurateur_fk like '%"+ch+"%')union (select * from restaurant where mail like '%"+ch+"%') ";
@@ -131,16 +128,7 @@ public class RestaurantDAO {
             return null;
         }
     
-}
-    
-     // test  recherche 
-     
-     
-     //
-     
-     
-    
-    
+}    
     public List<Restaurant> DisplayAllResto (){
     List<Restaurant> listeResto = new ArrayList<Restaurant>();
 
